@@ -144,7 +144,7 @@ namespace CHIP8.Windows
         private MenuItem menuFile_Exit;
         private MenuItem menuHelp;
         private MenuItem menuHelp_About;
-        private OpenTK.GLControl glControl;
+        public OpenTK.GLControl glControl;
         private OpenFileDialog openFileDialog;
     }
 }

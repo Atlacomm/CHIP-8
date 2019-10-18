@@ -1,18 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CHIP8.Emulation
+﻿namespace CHIP8.Emulation
 {
     class CPU
     {
-        byte[] memory = null;
+        // TODO: Implement user definable clock speed
+        public const int CLOCKSPEED = 500;
 
-        public CPU(byte[] memory)
+        Emulator emulator;
+
+        byte[] V = null;
+        ushort I = 0;
+
+        ushort[] stack = null;
+
+        byte delayTimer = 0;
+        byte soundTimer = 0;
+
+        ushort pc = 512;
+
+        public CPU(Emulator emulator)
         {
-            this.memory = memory;
+            this.emulator = emulator;
+
+            V = new byte[16];
+            stack = new ushort[32];
+        }
+
+        public void UpdateTimers()
+        {
+            if (delayTimer > 0) delayTimer--;
+            if (soundTimer > 0) soundTimer--;
+
+            // TODO: Make a beep when sound timer is not zero
+        }
+
+        public void EmulateCycle()
+        {
+            
         }
     }
 }

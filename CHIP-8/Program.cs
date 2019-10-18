@@ -8,7 +8,10 @@ namespace CHIP8
     static class Program
     {
         public const string SETTINGSFILE = "chip8.cfg";
+
         public static Settings settings = null;
+
+        public static MainWindow mainWindow;
 
         [STAThread]
         static void Main(string[] args)
@@ -26,7 +29,7 @@ namespace CHIP8
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MainWindow mainWindow = new MainWindow();
+            mainWindow = new MainWindow();
             Application.Run(mainWindow);
             mainWindow.Dispose();
         }

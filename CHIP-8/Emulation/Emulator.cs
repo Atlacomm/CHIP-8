@@ -1,28 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.IO;
 using System.Threading;
+using System.Windows.Forms;
+using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL;
 
 namespace CHIP8.Emulation
 {
     class Emulator
     {
-        const ushort memorySize = 4096;
-        const ushort romOffset = 512;
+        // Font properties
+        static readonly char[] CHARS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
+        // Screen size
+        const int SCREENWIDTH = 64;
+        const int SCREENHEIGHT = 32;
+
+        // Update target in Hertz
+        const int UPDATETARGET = 60;
+
+        // Size of the machine memory
+        const ushort MEMORYSIZE = 4096;
+        
+        // Offset at which the rom should be loaded into memory
+        const ushort ROMOFFSET = 512;
+
+        // Font offsets
+        const ushort FONTOFFSET = 0;
+        ushort[] fontOffsets;
+
+        // Thread where the emulation happens
         Thread emulationThread = null;
 
-        byte[] memory = null;
+        // Frame buffer for the emulator
+        public bool[] frameBuffer = null;
+
+        // Machine memory
+        public byte[] memory = null;
+
+        // The cpu
         CPU cpu = null;
 
-        bool ended = false;
+        // Should the emulation end?
+        bool emulationShouldEnd = false;
 
         public Emulator(byte[] romData)
         {
+            // Initialize the frame buffer
+            frameBuffer = new bool[SCREENWIDTH * SCREENHEIGHT];
+
             // Initialize memory
-            memory = new byte[memorySize];
+            memory = new byte[MEMORYSIZE];
             for (int i = 0; i < memory.Length; i++) memory[i] = 0;
+
+            // Initialize font
+            fontOffsets = new ushort[CHARS.Length];
+            LoadFontset("fontset.txt");
 
             // Load rom into memory
             for (int i = 0; i < romData.Length; i++)
@@ -34,30 +69,144 @@ namespace CHIP8.Emulation
                 }
 
                 // Load rom at offset in memory
-                memory[i + romOffset] = romData[i];
+                memory[i + ROMOFFSET] = romData[i];
             }
 
+            MemDump("memdump.bin", false);
+
             // Create the CPU
-            cpu = new CPU(memory);
+            cpu = new CPU(this);
 
             // Perform emulation tasks
             emulationThread = new Thread(() =>
             {
+                // Setup the emulationTimer
                 Stopwatch emulationTimer = new Stopwatch();
                 emulationTimer.Start();
 
-                while (!ended)
+                // Create graphics context for this thread
+                IGraphicsContext context = new GraphicsContext(GraphicsMode.Default, Program.mainWindow.glControl.WindowInfo);
+                context.MakeCurrent(Program.mainWindow.glControl.WindowInfo);
+
+                // Run the emulation until we want to stop it
+                while (!emulationShouldEnd)
                 {
-                    // TODO: Implement emulation
+                    // Update UPDATETARGET times per second
+                    if (emulationTimer.Elapsed.TotalMilliseconds >= 1000 / UPDATETARGET)
+                    {
+                        // Update timers
+                        cpu.UpdateTimers();
+
+                        // Restart the timer
+                        emulationTimer.Restart();
+
+                        // Run CPU Cycles until the target cycle count has been reached
+                        int targetCycles = CPU.CLOCKSPEED / UPDATETARGET;
+                        int cycles = 0;
+
+                        while (cycles < targetCycles && !emulationShouldEnd)
+                        {
+                            cpu.EmulateCycle();
+                        }
+                    }
                 }
+
+                context.Dispose();
             });
+
+            // Start the emulation
             emulationThread.Start();
         }
 
+        public void LoadFontset(string path)
+        {
+            // If the specified file does not exist return
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("The fontset configuration file could not be found. This may result in undefined behaviour!", "Fontset configuration missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string[] file = File.ReadAllLines(path);
+
+            ushort memoryOffset = FONTOFFSET;
+
+            for (int i = 0; i < CHARS.Length; i++)
+            {
+                int offset = 0;
+                for (int j = 0; j < file.Length; j++)
+                {
+                    if (file[j] == CHARS[i].ToString())
+                    {
+                        offset = j + 1;
+                        break;
+                    }
+                }
+
+                fontOffsets[i] = memoryOffset;
+
+                // If the offset is outside of the file break
+                if (offset >= file.Length) break;
+
+                // Load font into memory
+                for (int j = offset; j < offset + 5; j++, memoryOffset++)
+                {
+                    string currentLine = file[j];
+
+                    string b = "";
+
+                    foreach (char c in currentLine)
+                    {
+                        if (c == ' ') b += "0";
+                        else b += "1";
+                    }
+
+                    while (b.Length < 8) b += "0";
+
+                    // If number is not a valid binary number return
+                    foreach (char c in b) if (c != '1' && c != '0') return;
+
+                    memory[memoryOffset] = Convert.ToByte(b, 2);
+                }
+            }
+        }
+
+        public void MemDump(string path, bool plainText = true)
+        {
+            if (File.Exists(path)) File.Delete(path);
+
+            if (!plainText)
+            {
+                File.WriteAllBytes(path, memory);
+                return;
+            }
+
+            List<string> memDump = new List<string>();
+
+            memDump.Add("Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F");
+            memDump.Add("");
+            for (int i = 0; i < memory.Length; i += 16)
+            {
+                string line = i.ToString("X8") + " ";
+
+                for (int j = 0; j < 16; j++)
+                {
+                    if (i % 2 == 0) line += " ";
+                    line += memory[i + j].ToString("X2");
+                }
+
+                memDump.Add(line);
+            }
+
+            File.WriteAllLines(path, memDump.ToArray());
+        }
+
+        // Make the emulation thread exit and wait for it
         public void WaitForEnd()
         {
-            ended = true;
+            // Tell the emulation thread it should end
+            emulationShouldEnd = true;
 
+            // Wait until the emulation thread has ended
             while (emulationThread.IsAlive) ;
 
             return;

@@ -10,7 +10,10 @@ namespace CHIP8.Windows
 {
     partial class MainWindow : Form
     {
-        Emulator emulator;
+        const int SCREENWIDTH = 64;
+        const int SCREENHEIGHT = 32;
+
+        Emulator emulator = null;
 
         public MainWindow()
         {
@@ -18,17 +21,8 @@ namespace CHIP8.Windows
 
             // Set the window size
             int scale = 10;
-            ClientSize = new Size(64 * scale, 32 * scale);
+            ClientSize = new Size(SCREENWIDTH * scale, SCREENHEIGHT * scale);
         }
-
-        // To use OpenGL from another thread we need to recreate the graphics context
-        public IGraphicsContext CreateGLContext()
-        {
-            IGraphicsContext context = new GraphicsContext(GraphicsMode.Default, glControl.WindowInfo);
-            context.MakeCurrent(glControl.WindowInfo);
-            return context;
-        }
-
         // Setup OpenGL
         private void glControl_Load(object sender, System.EventArgs e)
         {
@@ -43,9 +37,6 @@ namespace CHIP8.Windows
         {
             // Swap the buffers so the image is displayed
             glControl.SwapBuffers();
-
-            // Forcibly reload the control forever
-            Invalidate();
         }
 
         // Prompt the emulation to stop and wait for it to do so before exiting

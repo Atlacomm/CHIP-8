@@ -35,7 +35,7 @@
             // labelPressAKey
             // 
             this.labelPressAKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPressAKey.Location = new System.Drawing.Point(3, 3);
+            this.labelPressAKey.Location = new System.Drawing.Point(-1, 2);
             this.labelPressAKey.Name = "labelPressAKey";
             this.labelPressAKey.Size = new System.Drawing.Size(126, 13);
             this.labelPressAKey.TabIndex = 0;
@@ -45,7 +45,8 @@
             // labelText
             // 
             this.labelText.AutoSize = true;
-            this.labelText.Location = new System.Drawing.Point(3, 3);
+            this.labelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelText.Location = new System.Drawing.Point(-1, 2);
             this.labelText.Name = "labelText";
             this.labelText.Size = new System.Drawing.Size(0, 13);
             this.labelText.TabIndex = 1;
