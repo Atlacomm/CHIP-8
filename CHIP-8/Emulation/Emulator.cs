@@ -10,8 +10,10 @@ namespace CHIP8.Emulation
 {
     class Emulator
     {
-        // Font properties
+        // Font
         static readonly char[] CHARS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+        const ushort FONTOFFSET = 0;
+        public ushort[] fontOffsets;
 
         // Update target in Hertz
         const int UPDATETARGET = 60;
@@ -22,15 +24,11 @@ namespace CHIP8.Emulation
         // Offset at which the rom should be loaded into memory
         const ushort ROMOFFSET = 512;
 
-        // Font offsets
-        const ushort FONTOFFSET = 0;
-        ushort[] fontOffsets;
-
         // Thread where the emulation happens
         Thread emulationThread = null;
 
         public byte[] memory = null;
-        public Display display = new Display(mainWindow);
+        public Display display = null;
         CPU cpu = null;
 
         // Should the emulation end?
@@ -76,7 +74,7 @@ namespace CHIP8.Emulation
                 Stopwatch emulationTimer = new Stopwatch();
                 emulationTimer.Start();
 
-                Display display = new Display(mainWindow);
+                Display display = new Display();
 
                 // Run the emulation until we want to stop it
                 while (!emulationShouldEnd)

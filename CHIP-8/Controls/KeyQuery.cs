@@ -10,14 +10,8 @@ namespace CHIP8.Controls
 
         public override string Text
         {
-            get
-            {
-                return labelText.Text;
-            }
-            set
-            {
-                labelText.Text = value;
-            }
+            get => labelText.Text;
+            set => labelText.Text = value;
         }
 
         public KeyQuery()
@@ -26,6 +20,12 @@ namespace CHIP8.Controls
         }
 
         private void KeyQuery_MouseClick(object sender, MouseEventArgs e)
+        {
+            Querying = true;
+            labelPressAKey.Visible = true;
+        }
+
+        private void labelText_MouseClick(object sender, MouseEventArgs e)
         {
             Querying = true;
             labelPressAKey.Visible = true;

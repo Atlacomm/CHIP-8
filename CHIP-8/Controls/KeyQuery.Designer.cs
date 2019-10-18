@@ -50,6 +50,7 @@
             this.labelText.Name = "labelText";
             this.labelText.Size = new System.Drawing.Size(0, 13);
             this.labelText.TabIndex = 1;
+            this.labelText.MouseClick += new System.Windows.Forms.MouseEventHandler(this.labelText_MouseClick);
             // 
             // KeyQuery
             // 

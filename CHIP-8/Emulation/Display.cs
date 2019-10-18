@@ -2,20 +2,17 @@
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using System;
+using System.Drawing;
 using static CHIP8.Program;
 
 namespace CHIP8.Emulation
 {
     class Display : IDisposable
     {
-        MainWindow mainWindow = null;
-
         IGraphicsContext context;
 
-        public Display(MainWindow mainWindow)
+        public Display()
         {
-            this.mainWindow = mainWindow;
-
             context = new GraphicsContext(GraphicsMode.Default, mainWindow.glControl.WindowInfo);
             context.MakeCurrent(mainWindow.glControl.WindowInfo);
         }
@@ -30,7 +27,8 @@ namespace CHIP8.Emulation
                 {
                     bool pixel = frameBuffer[x + y * SCREENWIDTH];
 
-                    if (!pixel) continue;
+                    GL.Color3(Color.White);
+                    if (!pixel) GL.Color3(Color.Black);
 
                     (float tlX, float tlY) = PixelToGL(x, y);
                     (float trX, float trY) = PixelToGL(x + 1, y);

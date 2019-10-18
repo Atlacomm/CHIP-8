@@ -1,4 +1,5 @@
 ﻿using CHIP8.Emulation;
+using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
@@ -56,8 +57,6 @@ namespace CHIP8.Windows
         // Handle loading a file
         private void menuFile_Open_Click(object sender, System.EventArgs e)
         {
-            emulator?.WaitForEnd();
-
             // Prompt the user to select a file
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -70,6 +69,7 @@ namespace CHIP8.Windows
                     byte[] rom = File.ReadAllBytes(path);
 
                     // Create an emulator
+                    emulator?.WaitForEnd();
                     emulator = new Emulator(rom);
                 }
             }
