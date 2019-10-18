@@ -1,18 +1,15 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using OpenTK.Graphics;
+﻿using CHIP8.Emulation;
 using OpenTK.Graphics.OpenGL;
-using CHIP8.Emulation;
-using System.IO;
 using System;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using static CHIP8.Program;
 
 namespace CHIP8.Windows
 {
     partial class MainWindow : Form
     {
-        const int SCREENWIDTH = 64;
-        const int SCREENHEIGHT = 32;
-
         Emulator emulator = null;
 
         public MainWindow()
@@ -23,6 +20,7 @@ namespace CHIP8.Windows
             int scale = 10;
             ClientSize = new Size(SCREENWIDTH * scale, SCREENHEIGHT * scale);
         }
+
         // Setup OpenGL
         private void glControl_Load(object sender, System.EventArgs e)
         {
@@ -30,19 +28,29 @@ namespace CHIP8.Windows
 
             GL.ClearColor(Color.Black);
             GL.Clear(ClearBufferMask.ColorBufferBit);
+
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
         // Render OpenGL stuff
         private void glControl_Paint(object sender, PaintEventArgs e)
         {
-            // Swap the buffers so the image is displayed
             glControl.SwapBuffers();
         }
 
         // Prompt the emulation to stop and wait for it to do so before exiting
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Wait for the emulation thread to end
             emulator?.WaitForEnd();
+
+            // If the emulation does not end for some reason force it
+            emulator?.Kill();
+        }
+
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         // Handle loading a file

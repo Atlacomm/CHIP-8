@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CHIP8.Controls;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using CHIP8.Controls;
-
 using static CHIP8.Program;
 
 namespace CHIP8.Windows

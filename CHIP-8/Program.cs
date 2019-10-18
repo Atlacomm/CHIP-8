@@ -1,12 +1,16 @@
-﻿using System;
+﻿using CHIP8.Windows;
+using System;
 using System.IO;
 using System.Windows.Forms;
-using CHIP8.Windows;
 
 namespace CHIP8
 {
     static class Program
     {
+        // Screen size
+        public const int SCREENWIDTH = 64;
+        public const int SCREENHEIGHT = 32;
+
         public const string SETTINGSFILE = "chip8.cfg";
 
         public static Settings settings = null;

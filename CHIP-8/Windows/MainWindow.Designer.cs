@@ -127,8 +127,9 @@ namespace CHIP8.Windows
             this.MaximizeBox = false;
             this.Menu = this.mainMenu;
             this.Name = "MainWindow";
-            this.Text = "CHIP 8 Emulator";
+            this.Text = "CHIP-8 Emulator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.ResumeLayout(false);
 
         }

@@ -4,8 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL;
+using static CHIP8.Program;
 
 namespace CHIP8.Emulation
 {
@@ -14,16 +13,12 @@ namespace CHIP8.Emulation
         // Font properties
         static readonly char[] CHARS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
-        // Screen size
-        const int SCREENWIDTH = 64;
-        const int SCREENHEIGHT = 32;
-
         // Update target in Hertz
         const int UPDATETARGET = 60;
 
         // Size of the machine memory
         const ushort MEMORYSIZE = 4096;
-        
+
         // Offset at which the rom should be loaded into memory
         const ushort ROMOFFSET = 512;
 
@@ -34,23 +29,17 @@ namespace CHIP8.Emulation
         // Thread where the emulation happens
         Thread emulationThread = null;
 
-        // Frame buffer for the emulator
-        public bool[] frameBuffer = null;
-
-        // Machine memory
         public byte[] memory = null;
-
-        // The cpu
+        public Display display = new Display(mainWindow);
         CPU cpu = null;
 
         // Should the emulation end?
         bool emulationShouldEnd = false;
 
+        public bool[] frameBuffer = null;
+
         public Emulator(byte[] romData)
         {
-            // Initialize the frame buffer
-            frameBuffer = new bool[SCREENWIDTH * SCREENHEIGHT];
-
             // Initialize memory
             memory = new byte[MEMORYSIZE];
             for (int i = 0; i < memory.Length; i++) memory[i] = 0;
@@ -62,10 +51,10 @@ namespace CHIP8.Emulation
             // Load rom into memory
             for (int i = 0; i < romData.Length; i++)
             {
-                if (i >= memory.Length)
+                if (i + ROMOFFSET>= memory.Length)
                 {
                     // TODO: Implement warning for when the rom does not fit into memory
-                    break; // Break to avoid an IndexOutOfBoundsException
+                    break; // Break to avoid an IndexOutOfRangeException
                 }
 
                 // Load rom at offset in memory
@@ -77,6 +66,9 @@ namespace CHIP8.Emulation
             // Create the CPU
             cpu = new CPU(this);
 
+            // Initialize the frame buffer
+            frameBuffer = new bool[SCREENWIDTH * SCREENHEIGHT];
+
             // Perform emulation tasks
             emulationThread = new Thread(() =>
             {
@@ -84,9 +76,7 @@ namespace CHIP8.Emulation
                 Stopwatch emulationTimer = new Stopwatch();
                 emulationTimer.Start();
 
-                // Create graphics context for this thread
-                IGraphicsContext context = new GraphicsContext(GraphicsMode.Default, Program.mainWindow.glControl.WindowInfo);
-                context.MakeCurrent(Program.mainWindow.glControl.WindowInfo);
+                Display display = new Display(mainWindow);
 
                 // Run the emulation until we want to stop it
                 while (!emulationShouldEnd)
@@ -107,11 +97,13 @@ namespace CHIP8.Emulation
                         while (cycles < targetCycles && !emulationShouldEnd)
                         {
                             cpu.EmulateCycle();
+                            cycles++;
+                            display.RenderBuffer(frameBuffer);
                         }
                     }
                 }
 
-                context.Dispose();
+                display.Dispose();
             });
 
             // Start the emulation
@@ -210,6 +202,12 @@ namespace CHIP8.Emulation
             while (emulationThread.IsAlive) ;
 
             return;
+        }
+
+        // Kill the emulation thread (not recommended)
+        public void Kill()
+        {
+            emulationThread.Abort();
         }
     }
 }

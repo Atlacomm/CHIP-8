@@ -60,6 +60,7 @@
     <Compile Include="Controls\KeyQuery.Designer.cs">
       <DependentUpon>KeyQuery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Emulation\Display.cs" />
     <Compile Include="Emulation\CPU.cs" />
     <Compile Include="Emulation\Emulator.cs" />
     <Compile Include="Program.cs" />
