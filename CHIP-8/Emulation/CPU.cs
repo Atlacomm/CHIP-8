@@ -100,6 +100,12 @@ namespace CHIP8.Emulation
                         case 0x0005: // 8XY5 - Subtract VY from VX and if there is a borrow set VF to 0 else set VF to 1
                             Sub((opcode & 0x0F00) >> 8, (opcode & 0x00F0) >> 4);
                             break;
+                        case 0x0006: // 8XY6 - Store the least significant bit of VX in VF and shift VX to the right by 1
+                            Lsb((opcode & 0x0F00) >> 8);
+                            break;
+                        case 0x000E: // 8XYE - Store the most significant bit of VX in VF and shift VX to the left by 1
+                            Msb((opcode & 0x0F00) >> 8);
+                            break;
                         default:
                             foundCode = false;
                             break;

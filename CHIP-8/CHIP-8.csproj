@@ -63,6 +63,8 @@
     <Compile Include="Emulation\Display.cs" />
     <Compile Include="Emulation\CPU.cs" />
     <Compile Include="Emulation\Emulator.cs" />
+    <Compile Include="Emulation\Instructions\Msb.cs" />
+    <Compile Include="Emulation\Instructions\Lsb.cs" />
     <Compile Include="Emulation\Instructions\Xor.cs" />
     <Compile Include="Emulation\Instructions\Or.cs" />
     <Compile Include="Emulation\Instructions\Sne.cs" />
