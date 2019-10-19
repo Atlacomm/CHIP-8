@@ -6,9 +6,9 @@ namespace CHIP8.Emulation
     {
         private void Sub(int registerX, int registerY)
         {
-            bool borrow = false;
-
             Console.WriteLine($"sub V{registerX.ToString("X")}, V{registerY.ToString("X")}");
+
+            bool borrow = false;
 
             if (V[registerX] - V[registerY] < 0) borrow = true;
 

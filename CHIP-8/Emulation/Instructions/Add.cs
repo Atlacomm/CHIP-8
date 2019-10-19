@@ -6,9 +6,9 @@ namespace CHIP8.Emulation
     {
         private void Add(int registerX, int registerY)
         {
-            bool carry = false;
-
             Console.WriteLine($"add V{registerX.ToString("X")}, V{registerY.ToString("X")}");
+
+            bool carry = false;
 
             if (V[registerX] + V[registerY] > byte.MaxValue) carry = true;
 
