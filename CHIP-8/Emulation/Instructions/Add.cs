@@ -10,14 +10,9 @@ namespace CHIP8.Emulation
 
             Console.WriteLine($"add V{registerX.ToString("X")}, V{registerY.ToString("X")}");
 
-            int newVal = V[registerX] + V[registerY];
-            while (newVal > byte.MaxValue)
-            {
-                newVal -= byte.MaxValue;
-                carry = true;
-            }
+            if (V[registerX] + V[registerY] > byte.MaxValue) carry = true;
 
-            V[registerX] = (byte)newVal;
+            V[registerX] += V[registerY];
 
             V[0xF] = carry ? (byte)1 : (byte)0;
 

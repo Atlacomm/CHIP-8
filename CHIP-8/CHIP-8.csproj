@@ -63,6 +63,10 @@
     <Compile Include="Emulation\Display.cs" />
     <Compile Include="Emulation\CPU.cs" />
     <Compile Include="Emulation\Emulator.cs" />
+    <Compile Include="Emulation\Instructions\Xor.cs" />
+    <Compile Include="Emulation\Instructions\Or.cs" />
+    <Compile Include="Emulation\Instructions\Sne.cs" />
+    <Compile Include="Emulation\Instructions\Se.cs" />
     <Compile Include="Emulation\Instructions\Sst.cs" />
     <Compile Include="Emulation\Instructions\Sub.cs" />
     <Compile Include="Emulation\Instructions\Add.cs" />
@@ -70,8 +74,8 @@
     <Compile Include="Emulation\Instructions\And.cs" />
     <Compile Include="Emulation\Instructions\Mov.cs" />
     <Compile Include="Emulation\Instructions\Sdt.cs" />
-    <Compile Include="Emulation\Instructions\Sne.cs" />
-    <Compile Include="Emulation\Instructions\Skipknp.cs" />
+    <Compile Include="Emulation\Instructions\Snei.cs" />
+    <Compile Include="Emulation\Instructions\Sknp.cs" />
     <Compile Include="Emulation\Instructions\Addi.cs" />
     <Compile Include="Emulation\Instructions\Gdt.cs" />
     <Compile Include="Emulation\Instructions\Rnd.cs" />
@@ -79,7 +83,7 @@
     <Compile Include="Emulation\Instructions\Call.cs" />
     <Compile Include="Emulation\Instructions\Movi.cs" />
     <Compile Include="Emulation\Instructions\Imovi.cs" />
-    <Compile Include="Emulation\Instructions\Se.cs" />
+    <Compile Include="Emulation\Instructions\Sei.cs" />
     <Compile Include="Emulation\Instructions\Sprite.cs" />
     <Compile Include="Emulation\Instructions\SpriteAddr.cs" />
     <Compile Include="Emulation\Instructions\Bcd.cs" />

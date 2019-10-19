@@ -65,10 +65,13 @@ namespace CHIP8.Emulation
                     Call((ushort)(opcode & 0x0FFF));
                     break;
                 case 0x3000: // 3XNN - Skip next instruction if VX == NN
-                    Se((opcode & 0x0F00) >> 8, (byte)(opcode & 0x00FF));
+                    Sei((opcode & 0x0F00) >> 8, (byte)(opcode & 0x00FF));
                     break;
                 case 0x4000: // 4XNN - Skip next instruction if VX != NN
-                    Sne((opcode & 0x0F00) >> 8, (byte)(opcode & 0x00FF));
+                    Snei((opcode & 0x0F00) >> 8, (byte)(opcode & 0x00FF));
+                    break;
+                case 0x5000: // 5XY0 - Skip next instruction if VX == VY
+                    Se((opcode & 0x0F00) >> 8, (opcode & 0x00F0) >> 4);
                     break;
                 case 0x6000: // 6XNN - Set VX to NN
                     Movi((opcode & 0x0F00) >> 8, (byte)(opcode & 0x00FF));
@@ -82,8 +85,14 @@ namespace CHIP8.Emulation
                         case 0x0000: // 8XY0 - VX = VY
                             Mov((opcode & 0x0F00) >> 8, (opcode & 0x00F0) >> 4);
                             break;
-                        case 0x0002: // 0x8XY2 - VX = VX and VY (bitwise)
+                        case 0x0001: // 8XY1 - VX = VX or VY (bitwise)
+                            Or((opcode & 0x0F00) >> 8, (opcode & 0x00F0) >> 4);
+                            break;
+                        case 0x0002: // 8XY2 - VX = VX and VY (bitwise)
                             And((opcode & 0x0F00) >> 8, (opcode & 0x00F0) >> 4);
+                            break;
+                        case 0x0003: // 8XY3 - VX = VX xor VY (bitwise)
+                            Xor((opcode & 0x0F00) >> 8, (opcode & 0x00F0) >> 4);
                             break;
                         case 0x0004: // 8XY4 - Add VY to VX and set VF to 1 if there is a carry and set it to 0 if there isn't
                             Add((opcode & 0x0F00) >> 8, (opcode & 0x00F0) >> 4);
@@ -95,6 +104,9 @@ namespace CHIP8.Emulation
                             foundCode = false;
                             break;
                     }
+                    break;
+                case 0x9000: // 9XY0 - Skip next instruction if VX != VY
+                    Sne((opcode & 0x0F00) >> 8, (opcode & 0x00F0) >> 4);
                     break;
                 case 0xA000: // ANNN - Set I to the address NNN
                     Imovi((ushort)(opcode & 0x0FFF));
@@ -109,7 +121,7 @@ namespace CHIP8.Emulation
                     switch (opcode & 0x00FF)
                     {
                         case 0x00A1: // EXA1 - Skip next instruction if key in VX not pressed (TODO: Actually implement key check)
-                            Skipknp((opcode & 0x0F00) >> 8);
+                            Sknp((opcode & 0x0F00) >> 8);
                             break;
                         default:
                             foundCode = false;
@@ -150,6 +162,7 @@ namespace CHIP8.Emulation
             if (!foundCode)
             {
                 Console.WriteLine("Unknown opcode: 0x" + opcode.ToString("X4"));
+                pc += 2;
             }
 
             if (STEPMODE | !foundCode)

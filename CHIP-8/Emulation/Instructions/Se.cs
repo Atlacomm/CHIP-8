@@ -4,11 +4,11 @@ namespace CHIP8.Emulation
 {
     partial class CPU
     {
-        private void Se(int register, byte value)
+        private void Se(int registerX, int registerY)
         {
-            Console.WriteLine($"se V{register.ToString("X")}, {value}");
+            Console.WriteLine($"sei V{registerX.ToString("X")}, V{registerY.ToString("X")}");
 
-            if (V[register] == value) pc += 2;
+            if (V[registerX] == V[registerY]) pc += 2;
 
             pc += 2;
         }

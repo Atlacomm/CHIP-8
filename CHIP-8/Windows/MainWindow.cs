@@ -13,6 +13,8 @@ namespace CHIP8.Windows
     {
         Emulator emulator = null;
 
+        public bool[] buttonsDown { get; private set; } = new bool[settings.Buttons.Length];
+
         public MainWindow()
         {
             InitializeComponent();
@@ -20,6 +22,9 @@ namespace CHIP8.Windows
             // Set the window size
             int scale = 10;
             ClientSize = new Size(SCREENWIDTH * scale, SCREENHEIGHT * scale);
+
+            // Initialize button state
+            for (int i = 0; i < buttonsDown.Length; i++) buttonsDown[i] = false;
         }
 
         // Setup OpenGL
@@ -97,6 +102,28 @@ namespace CHIP8.Windows
             aboutWindow.StartPosition = FormStartPosition.CenterParent;
             aboutWindow.ShowDialog();
             aboutWindow.Dispose();
+        }
+
+        private void glControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            for (int i = 0; i < settings.Buttons.Length; i++)
+            {
+                if (settings.Buttons[i] == e.KeyCode)
+                {
+                    buttonsDown[i] = true;
+                }
+            }
+        }
+
+        private void glControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            for (int i = 0; i < settings.Buttons.Length; i++)
+            {
+                if (settings.Buttons[i] == e.KeyCode)
+                {
+                    buttonsDown[i] = false;
+                }
+            }
         }
     }
 }

@@ -8,10 +8,7 @@ namespace CHIP8.Emulation
         {
             Console.WriteLine($"addi V{register.ToString("X")}, {value}");
 
-            int newVal = V[register] + value;
-            while (newVal > byte.MaxValue) newVal -= byte.MaxValue;
-
-            V[register] = (byte)newVal;
+            V[register] += value;
 
             pc += 2;
         }
