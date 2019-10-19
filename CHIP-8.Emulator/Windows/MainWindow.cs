@@ -47,6 +47,8 @@ namespace CHIP8.Windows
         // Prompt the emulation to stop and wait for it to do so before exiting
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
+            buttonsDown[0] = true;
+
             // Wait for the emulation thread to end
             emulator?.WaitForEnd();
 

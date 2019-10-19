@@ -102,6 +102,7 @@ namespace CHIP8.Emulation
                 }
 
                 display.Dispose();
+                cpu.Dispose();
             });
 
             // Start the emulation

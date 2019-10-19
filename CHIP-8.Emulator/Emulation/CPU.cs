@@ -1,8 +1,12 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
+using System.IO;
+using System.Media;
+using System.Reflection;
 
 namespace CHIP8.Emulation
 {
-    partial class CPU
+    partial class CPU : IDisposable
     {
         // TODO: Implement user definable clock speed
         public const int CLOCKSPEED = 500;
@@ -23,18 +27,40 @@ namespace CHIP8.Emulation
 
         ushort pc = 512;
 
+        SoundPlayer soundPlayer;
+        Stream soundStream;
+
+        bool playing = false;
+
         public CPU(Emulator emulator)
         {
             this.emulator = emulator;
 
             V = new byte[16];
             stack = new ushort[32];
+
+            soundPlayer = new SoundPlayer();
+            soundStream = Properties.Resources.beep;
+
+            soundPlayer.Stream = soundStream;
+            soundPlayer.Load();
         }
 
         public void UpdateTimers()
         {
             if (delayTimer > 0) delayTimer--;
             if (soundTimer > 0) soundTimer--;
+            else
+            {
+                soundPlayer.Stop();
+                playing = false;
+            }
+
+            if (soundTimer > 0 && !playing)
+            {
+                playing = true;
+                soundPlayer?.PlayLooping();
+            }
 
             // TODO: Make a beep when sound timer is not zero
         }
@@ -191,11 +217,12 @@ namespace CHIP8.Emulation
                 Console.WriteLine("Unknown opcode: 0x" + opcode.ToString("X4"));
                 pc += 2;
             }
+        }
 
-            if (STEPMODE)
-            {
-                Console.ReadKey();
-            }
+        public void Dispose()
+        {
+            soundPlayer.Dispose();
+            soundStream.Dispose();
         }
     }
 }
