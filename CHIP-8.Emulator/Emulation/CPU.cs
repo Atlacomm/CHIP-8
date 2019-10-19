@@ -1,8 +1,6 @@
-﻿using NAudio.Wave;
-using System;
+﻿using System;
 using System.IO;
 using System.Media;
-using System.Reflection;
 
 namespace CHIP8.Emulation
 {
@@ -61,8 +59,6 @@ namespace CHIP8.Emulation
                 playing = true;
                 soundPlayer?.PlayLooping();
             }
-
-            // TODO: Make a beep when sound timer is not zero
         }
 
         public void EmulateCycle()
