@@ -9,6 +9,9 @@ namespace CHIP8
         [JsonProperty("Buttons")]
         public Keys[] Buttons = new Keys[] { Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.A, Keys.B, Keys.C, Keys.D, Keys.E, Keys.F };
 
+        [JsonProperty("Sound")]
+        public bool Sound = true;
+
         public void SaveToFile(string path)
         {
             string data = JsonConvert.SerializeObject(this, Formatting.None);

@@ -25,6 +25,8 @@ namespace CHIP8.Windows
 
             // Initialize button state
             for (int i = 0; i < buttonsDown.Length; i++) buttonsDown[i] = false;
+
+            menuOptions_Sound.Checked = settings.Sound;
         }
 
         // Setup OpenGL
@@ -128,6 +130,22 @@ namespace CHIP8.Windows
                     buttonsDown[i] = false;
                 }
             }
+        }
+
+        private void menuOptions_Sound_Click(object sender, EventArgs e)
+        {
+            if (!menuOptions_Sound.Checked)
+            {
+                menuOptions_Sound.Checked = true;
+            }
+            else
+            {
+                menuOptions_Sound.Checked = false;
+                
+            }
+
+            settings.Sound = menuOptions_Sound.Checked;
+            settings.SaveToFile(SETTINGSFILE);
         }
     }
 }

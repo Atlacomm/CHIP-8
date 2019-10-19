@@ -128,12 +128,12 @@ namespace CHIP8.Windows
             }
         }
 
-        private void button2_Click(object sender, System.EventArgs e)
+        private void buttonCancel_Click(object sender, System.EventArgs e)
         {
             Close();
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+        private void buttonSave_Click(object sender, System.EventArgs e)
         {
             settings.Buttons = new List<Keys>(tempSettings.Buttons).ToArray();
             settings.SaveToFile(SETTINGSFILE);

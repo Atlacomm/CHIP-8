@@ -32,23 +32,6 @@ namespace CHIP8.Windows
         {
             this.labelButton0 = new System.Windows.Forms.Label();
             this.groupBoxInput = new System.Windows.Forms.GroupBox();
-            this.labelButtonF = new System.Windows.Forms.Label();
-            this.labelButtonE = new System.Windows.Forms.Label();
-            this.labelButtonD = new System.Windows.Forms.Label();
-            this.labelButtonC = new System.Windows.Forms.Label();
-            this.labelButtonB = new System.Windows.Forms.Label();
-            this.labelButtonA = new System.Windows.Forms.Label();
-            this.labelButton9 = new System.Windows.Forms.Label();
-            this.labelButton8 = new System.Windows.Forms.Label();
-            this.labelButton7 = new System.Windows.Forms.Label();
-            this.labelButton6 = new System.Windows.Forms.Label();
-            this.labelButton5 = new System.Windows.Forms.Label();
-            this.labelButton4 = new System.Windows.Forms.Label();
-            this.labelButton3 = new System.Windows.Forms.Label();
-            this.labelButton2 = new System.Windows.Forms.Label();
-            this.labelButton1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.keyQuery8 = new CHIP8.Controls.KeyQuery();
             this.keyQuery9 = new CHIP8.Controls.KeyQuery();
             this.keyQueryA = new CHIP8.Controls.KeyQuery();
@@ -65,6 +48,23 @@ namespace CHIP8.Windows
             this.keyQuery3 = new CHIP8.Controls.KeyQuery();
             this.keyQuery1 = new CHIP8.Controls.KeyQuery();
             this.keyQuery0 = new CHIP8.Controls.KeyQuery();
+            this.labelButtonF = new System.Windows.Forms.Label();
+            this.labelButtonE = new System.Windows.Forms.Label();
+            this.labelButtonD = new System.Windows.Forms.Label();
+            this.labelButtonC = new System.Windows.Forms.Label();
+            this.labelButtonB = new System.Windows.Forms.Label();
+            this.labelButtonA = new System.Windows.Forms.Label();
+            this.labelButton9 = new System.Windows.Forms.Label();
+            this.labelButton8 = new System.Windows.Forms.Label();
+            this.labelButton7 = new System.Windows.Forms.Label();
+            this.labelButton6 = new System.Windows.Forms.Label();
+            this.labelButton5 = new System.Windows.Forms.Label();
+            this.labelButton4 = new System.Windows.Forms.Label();
+            this.labelButton3 = new System.Windows.Forms.Label();
+            this.labelButton2 = new System.Windows.Forms.Label();
+            this.labelButton1 = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxInput.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,161 +119,6 @@ namespace CHIP8.Windows
             this.groupBoxInput.TabIndex = 1;
             this.groupBoxInput.TabStop = false;
             this.groupBoxInput.Text = "Input";
-            // 
-            // labelButtonF
-            // 
-            this.labelButtonF.AutoSize = true;
-            this.labelButtonF.Location = new System.Drawing.Point(246, 204);
-            this.labelButtonF.Name = "labelButtonF";
-            this.labelButtonF.Size = new System.Drawing.Size(47, 13);
-            this.labelButtonF.TabIndex = 31;
-            this.labelButtonF.Text = "Button F";
-            // 
-            // labelButtonE
-            // 
-            this.labelButtonE.AutoSize = true;
-            this.labelButtonE.Location = new System.Drawing.Point(246, 178);
-            this.labelButtonE.Name = "labelButtonE";
-            this.labelButtonE.Size = new System.Drawing.Size(48, 13);
-            this.labelButtonE.TabIndex = 29;
-            this.labelButtonE.Text = "Button E";
-            // 
-            // labelButtonD
-            // 
-            this.labelButtonD.AutoSize = true;
-            this.labelButtonD.Location = new System.Drawing.Point(246, 152);
-            this.labelButtonD.Name = "labelButtonD";
-            this.labelButtonD.Size = new System.Drawing.Size(49, 13);
-            this.labelButtonD.TabIndex = 27;
-            this.labelButtonD.Text = "Button D";
-            // 
-            // labelButtonC
-            // 
-            this.labelButtonC.AutoSize = true;
-            this.labelButtonC.Location = new System.Drawing.Point(246, 126);
-            this.labelButtonC.Name = "labelButtonC";
-            this.labelButtonC.Size = new System.Drawing.Size(48, 13);
-            this.labelButtonC.TabIndex = 25;
-            this.labelButtonC.Text = "Button C";
-            // 
-            // labelButtonB
-            // 
-            this.labelButtonB.AutoSize = true;
-            this.labelButtonB.Location = new System.Drawing.Point(246, 100);
-            this.labelButtonB.Name = "labelButtonB";
-            this.labelButtonB.Size = new System.Drawing.Size(48, 13);
-            this.labelButtonB.TabIndex = 23;
-            this.labelButtonB.Text = "Button B";
-            // 
-            // labelButtonA
-            // 
-            this.labelButtonA.AutoSize = true;
-            this.labelButtonA.Location = new System.Drawing.Point(246, 74);
-            this.labelButtonA.Name = "labelButtonA";
-            this.labelButtonA.Size = new System.Drawing.Size(48, 13);
-            this.labelButtonA.TabIndex = 21;
-            this.labelButtonA.Text = "Button A";
-            // 
-            // labelButton9
-            // 
-            this.labelButton9.AutoSize = true;
-            this.labelButton9.Location = new System.Drawing.Point(246, 48);
-            this.labelButton9.Name = "labelButton9";
-            this.labelButton9.Size = new System.Drawing.Size(47, 13);
-            this.labelButton9.TabIndex = 19;
-            this.labelButton9.Text = "Button 9";
-            // 
-            // labelButton8
-            // 
-            this.labelButton8.AutoSize = true;
-            this.labelButton8.Location = new System.Drawing.Point(246, 22);
-            this.labelButton8.Name = "labelButton8";
-            this.labelButton8.Size = new System.Drawing.Size(47, 13);
-            this.labelButton8.TabIndex = 17;
-            this.labelButton8.Text = "Button 8";
-            // 
-            // labelButton7
-            // 
-            this.labelButton7.AutoSize = true;
-            this.labelButton7.Location = new System.Drawing.Point(6, 204);
-            this.labelButton7.Name = "labelButton7";
-            this.labelButton7.Size = new System.Drawing.Size(47, 13);
-            this.labelButton7.TabIndex = 15;
-            this.labelButton7.Text = "Button 7";
-            // 
-            // labelButton6
-            // 
-            this.labelButton6.AutoSize = true;
-            this.labelButton6.Location = new System.Drawing.Point(6, 178);
-            this.labelButton6.Name = "labelButton6";
-            this.labelButton6.Size = new System.Drawing.Size(47, 13);
-            this.labelButton6.TabIndex = 13;
-            this.labelButton6.Text = "Button 6";
-            // 
-            // labelButton5
-            // 
-            this.labelButton5.AutoSize = true;
-            this.labelButton5.Location = new System.Drawing.Point(6, 152);
-            this.labelButton5.Name = "labelButton5";
-            this.labelButton5.Size = new System.Drawing.Size(47, 13);
-            this.labelButton5.TabIndex = 11;
-            this.labelButton5.Text = "Button 5";
-            // 
-            // labelButton4
-            // 
-            this.labelButton4.AutoSize = true;
-            this.labelButton4.Location = new System.Drawing.Point(6, 126);
-            this.labelButton4.Name = "labelButton4";
-            this.labelButton4.Size = new System.Drawing.Size(47, 13);
-            this.labelButton4.TabIndex = 9;
-            this.labelButton4.Text = "Button 4";
-            // 
-            // labelButton3
-            // 
-            this.labelButton3.AutoSize = true;
-            this.labelButton3.Location = new System.Drawing.Point(6, 100);
-            this.labelButton3.Name = "labelButton3";
-            this.labelButton3.Size = new System.Drawing.Size(47, 13);
-            this.labelButton3.TabIndex = 7;
-            this.labelButton3.Text = "Button 3";
-            // 
-            // labelButton2
-            // 
-            this.labelButton2.AutoSize = true;
-            this.labelButton2.Location = new System.Drawing.Point(6, 74);
-            this.labelButton2.Name = "labelButton2";
-            this.labelButton2.Size = new System.Drawing.Size(47, 13);
-            this.labelButton2.TabIndex = 5;
-            this.labelButton2.Text = "Button 2";
-            // 
-            // labelButton1
-            // 
-            this.labelButton1.AutoSize = true;
-            this.labelButton1.Location = new System.Drawing.Point(6, 48);
-            this.labelButton1.Name = "labelButton1";
-            this.labelButton1.Size = new System.Drawing.Size(47, 13);
-            this.labelButton1.TabIndex = 3;
-            this.labelButton1.Text = "Button 1";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(403, 249);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(322, 249);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // keyQuery8
             // 
@@ -467,11 +312,166 @@ namespace CHIP8.Windows
             this.keyQuery0.KeySelected += new System.Windows.Forms.KeyEventHandler(this.keyQuery_KeySelected);
             this.keyQuery0.MouseClick += new System.Windows.Forms.MouseEventHandler(this.keyQuery_MouseClick);
             // 
+            // labelButtonF
+            // 
+            this.labelButtonF.AutoSize = true;
+            this.labelButtonF.Location = new System.Drawing.Point(246, 204);
+            this.labelButtonF.Name = "labelButtonF";
+            this.labelButtonF.Size = new System.Drawing.Size(47, 13);
+            this.labelButtonF.TabIndex = 31;
+            this.labelButtonF.Text = "Button F";
+            // 
+            // labelButtonE
+            // 
+            this.labelButtonE.AutoSize = true;
+            this.labelButtonE.Location = new System.Drawing.Point(246, 178);
+            this.labelButtonE.Name = "labelButtonE";
+            this.labelButtonE.Size = new System.Drawing.Size(48, 13);
+            this.labelButtonE.TabIndex = 29;
+            this.labelButtonE.Text = "Button E";
+            // 
+            // labelButtonD
+            // 
+            this.labelButtonD.AutoSize = true;
+            this.labelButtonD.Location = new System.Drawing.Point(246, 152);
+            this.labelButtonD.Name = "labelButtonD";
+            this.labelButtonD.Size = new System.Drawing.Size(49, 13);
+            this.labelButtonD.TabIndex = 27;
+            this.labelButtonD.Text = "Button D";
+            // 
+            // labelButtonC
+            // 
+            this.labelButtonC.AutoSize = true;
+            this.labelButtonC.Location = new System.Drawing.Point(246, 126);
+            this.labelButtonC.Name = "labelButtonC";
+            this.labelButtonC.Size = new System.Drawing.Size(48, 13);
+            this.labelButtonC.TabIndex = 25;
+            this.labelButtonC.Text = "Button C";
+            // 
+            // labelButtonB
+            // 
+            this.labelButtonB.AutoSize = true;
+            this.labelButtonB.Location = new System.Drawing.Point(246, 100);
+            this.labelButtonB.Name = "labelButtonB";
+            this.labelButtonB.Size = new System.Drawing.Size(48, 13);
+            this.labelButtonB.TabIndex = 23;
+            this.labelButtonB.Text = "Button B";
+            // 
+            // labelButtonA
+            // 
+            this.labelButtonA.AutoSize = true;
+            this.labelButtonA.Location = new System.Drawing.Point(246, 74);
+            this.labelButtonA.Name = "labelButtonA";
+            this.labelButtonA.Size = new System.Drawing.Size(48, 13);
+            this.labelButtonA.TabIndex = 21;
+            this.labelButtonA.Text = "Button A";
+            // 
+            // labelButton9
+            // 
+            this.labelButton9.AutoSize = true;
+            this.labelButton9.Location = new System.Drawing.Point(246, 48);
+            this.labelButton9.Name = "labelButton9";
+            this.labelButton9.Size = new System.Drawing.Size(47, 13);
+            this.labelButton9.TabIndex = 19;
+            this.labelButton9.Text = "Button 9";
+            // 
+            // labelButton8
+            // 
+            this.labelButton8.AutoSize = true;
+            this.labelButton8.Location = new System.Drawing.Point(246, 22);
+            this.labelButton8.Name = "labelButton8";
+            this.labelButton8.Size = new System.Drawing.Size(47, 13);
+            this.labelButton8.TabIndex = 17;
+            this.labelButton8.Text = "Button 8";
+            // 
+            // labelButton7
+            // 
+            this.labelButton7.AutoSize = true;
+            this.labelButton7.Location = new System.Drawing.Point(6, 204);
+            this.labelButton7.Name = "labelButton7";
+            this.labelButton7.Size = new System.Drawing.Size(47, 13);
+            this.labelButton7.TabIndex = 15;
+            this.labelButton7.Text = "Button 7";
+            // 
+            // labelButton6
+            // 
+            this.labelButton6.AutoSize = true;
+            this.labelButton6.Location = new System.Drawing.Point(6, 178);
+            this.labelButton6.Name = "labelButton6";
+            this.labelButton6.Size = new System.Drawing.Size(47, 13);
+            this.labelButton6.TabIndex = 13;
+            this.labelButton6.Text = "Button 6";
+            // 
+            // labelButton5
+            // 
+            this.labelButton5.AutoSize = true;
+            this.labelButton5.Location = new System.Drawing.Point(6, 152);
+            this.labelButton5.Name = "labelButton5";
+            this.labelButton5.Size = new System.Drawing.Size(47, 13);
+            this.labelButton5.TabIndex = 11;
+            this.labelButton5.Text = "Button 5";
+            // 
+            // labelButton4
+            // 
+            this.labelButton4.AutoSize = true;
+            this.labelButton4.Location = new System.Drawing.Point(6, 126);
+            this.labelButton4.Name = "labelButton4";
+            this.labelButton4.Size = new System.Drawing.Size(47, 13);
+            this.labelButton4.TabIndex = 9;
+            this.labelButton4.Text = "Button 4";
+            // 
+            // labelButton3
+            // 
+            this.labelButton3.AutoSize = true;
+            this.labelButton3.Location = new System.Drawing.Point(6, 100);
+            this.labelButton3.Name = "labelButton3";
+            this.labelButton3.Size = new System.Drawing.Size(47, 13);
+            this.labelButton3.TabIndex = 7;
+            this.labelButton3.Text = "Button 3";
+            // 
+            // labelButton2
+            // 
+            this.labelButton2.AutoSize = true;
+            this.labelButton2.Location = new System.Drawing.Point(6, 74);
+            this.labelButton2.Name = "labelButton2";
+            this.labelButton2.Size = new System.Drawing.Size(47, 13);
+            this.labelButton2.TabIndex = 5;
+            this.labelButton2.Text = "Button 2";
+            // 
+            // labelButton1
+            // 
+            this.labelButton1.AutoSize = true;
+            this.labelButton1.Location = new System.Drawing.Point(6, 48);
+            this.labelButton1.Name = "labelButton1";
+            this.labelButton1.Size = new System.Drawing.Size(47, 13);
+            this.labelButton1.TabIndex = 3;
+            this.labelButton1.Text = "Button 1";
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(403, 249);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 2;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(322, 249);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 3;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
             // SettingsWindow
             // 
             this.ClientSize = new System.Drawing.Size(490, 283);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.groupBoxInput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -519,7 +519,7 @@ namespace CHIP8.Windows
         private Controls.KeyQuery keyQueryD;
         private Controls.KeyQuery keyQueryE;
         private Controls.KeyQuery keyQueryF;
-        private Button button1;
-        private Button button2;
+        private Button buttonSave;
+        private Button buttonCancel;
     }
 }

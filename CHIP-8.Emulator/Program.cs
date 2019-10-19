@@ -27,8 +27,9 @@ namespace CHIP8
             else
             {
                 settings = new Settings();
-                settings.SaveToFile(SETTINGSFILE);
             }
+
+            settings.SaveToFile(SETTINGSFILE);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

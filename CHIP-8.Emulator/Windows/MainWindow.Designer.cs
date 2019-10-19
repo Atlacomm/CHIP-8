@@ -37,6 +37,7 @@ namespace CHIP8.Windows
             this.menuFile_Divider0 = new System.Windows.Forms.MenuItem();
             this.menuFile_Exit = new System.Windows.Forms.MenuItem();
             this.menuOptions = new System.Windows.Forms.MenuItem();
+            this.menuOptions_Sound = new System.Windows.Forms.MenuItem();
             this.menuOptions_Settings = new System.Windows.Forms.MenuItem();
             this.menuHelp = new System.Windows.Forms.MenuItem();
             this.menuHelp_About = new System.Windows.Forms.MenuItem();
@@ -81,12 +82,19 @@ namespace CHIP8.Windows
             // 
             this.menuOptions.Index = 1;
             this.menuOptions.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuOptions_Sound,
             this.menuOptions_Settings});
             this.menuOptions.Text = "Options";
             // 
+            // menuOptions_Sound
+            // 
+            this.menuOptions_Sound.Index = 0;
+            this.menuOptions_Sound.Text = "Sound";
+            this.menuOptions_Sound.Click += new System.EventHandler(this.menuOptions_Sound_Click);
+            // 
             // menuOptions_Settings
             // 
-            this.menuOptions_Settings.Index = 0;
+            this.menuOptions_Settings.Index = 1;
             this.menuOptions_Settings.Text = "Settings";
             this.menuOptions_Settings.Click += new System.EventHandler(this.menuOptions_Settings_Click);
             // 
@@ -149,5 +157,6 @@ namespace CHIP8.Windows
         private MenuItem menuHelp_About;
         public OpenTK.GLControl glControl;
         private OpenFileDialog openFileDialog;
+        private MenuItem menuOptions_Sound;
     }
 }

@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\CheckableMenuItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CheckableMenuItem.Designer.cs">
+      <DependentUpon>CheckableMenuItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\KeyQuery.cs">
       <SubType>UserControl</SubType>
     </Compile>

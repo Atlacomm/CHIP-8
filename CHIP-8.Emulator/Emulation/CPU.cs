@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Media;
+using static CHIP8.Program;
 
 namespace CHIP8.Emulation
 {
@@ -54,7 +55,7 @@ namespace CHIP8.Emulation
                 playing = false;
             }
 
-            if (soundTimer > 0 && !playing)
+            if (soundTimer > 0 && !playing && settings.Sound)
             {
                 playing = true;
                 soundPlayer?.PlayLooping();
