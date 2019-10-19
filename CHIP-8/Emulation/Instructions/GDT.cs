@@ -4,8 +4,10 @@ namespace CHIP8.Emulation
 {
     partial class CPU
     {
-        private void GetDelayTimer(int register)
+        private void Gdt(int register)
         {
+            Console.WriteLine($"gdt V{register.ToString("X")}");
+
             V[register] = delayTimer;
 
             pc += 2;

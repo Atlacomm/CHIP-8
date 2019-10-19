@@ -4,9 +4,9 @@ namespace CHIP8.Emulation
 {
     partial class CPU
     {
-        private void Fill(int register)
+        private void Load(int register)
         {
-            Console.WriteLine($"fill V{register.ToString("X")}");
+            Console.WriteLine($"load V{register.ToString("X")}");
 
             for (int i = 0; i <= register; i++)
             {

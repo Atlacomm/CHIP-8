@@ -9,7 +9,7 @@ namespace CHIP8.Emulation
         {
             Console.WriteLine($"call {adress}");
 
-            stack[sp] = (ushort)(pc + 10);
+            stack[sp] = (ushort)(pc + 2);
             sp++;
 
             pc = adress;

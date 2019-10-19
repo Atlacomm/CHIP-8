@@ -5,11 +5,11 @@ namespace CHIP8.Emulation
 {
     partial class CPU
     {
-        private void Mov(int register, byte value)
+        private void Mov(int registerX, int registerY)
         {
-            Console.WriteLine($"mov V{register.ToString("X")}, {value}");
+            Console.WriteLine($"mov V{registerX.ToString("X")}, V{registerY.ToString("X")}");
 
-            V[register] = value;
+            V[registerX] = V[registerY];
 
             pc += 2;
         }

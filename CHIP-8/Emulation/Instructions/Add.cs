@@ -4,14 +4,22 @@ namespace CHIP8.Emulation
 {
     partial class CPU
     {
-        private void Add(int register, byte value)
+        private void Add(int registerX, int registerY)
         {
-            Console.WriteLine($"add V{register.ToString("X")}, {value}");
+            bool carry = false;
 
-            int newVal = V[register] + value;
-            while (newVal > byte.MaxValue) newVal -= byte.MaxValue;
+            Console.WriteLine($"add V{registerX.ToString("X")}, V{registerY.ToString("X")}");
 
-            V[register] = (byte)newVal;
+            int newVal = V[registerX] + V[registerY];
+            while (newVal > byte.MaxValue)
+            {
+                newVal -= byte.MaxValue;
+                carry = true;
+            }
+
+            V[registerX] = (byte)newVal;
+
+            V[0xF] = carry ? (byte)1 : (byte)0;
 
             pc += 2;
         }
