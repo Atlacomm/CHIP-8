@@ -12,6 +12,8 @@ namespace CHIP8.Emulation
             {
                 emulator.frameBuffer[i] = false;
             }
+
+            pc += 2;
         }
     }
 }

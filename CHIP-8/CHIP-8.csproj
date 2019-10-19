@@ -65,10 +65,12 @@
     <Compile Include="Emulation\Emulator.cs" />
     <Compile Include="Emulation\Instructions\Clr.cs" />
     <Compile Include="Emulation\Instructions\Iadd.cs" />
+    <Compile Include="Emulation\Instructions\Jmpa.cs" />
     <Compile Include="Emulation\Instructions\Key.cs" />
     <Compile Include="Emulation\Instructions\Save.cs" />
     <Compile Include="Emulation\Instructions\Msb.cs" />
     <Compile Include="Emulation\Instructions\Lsb.cs" />
+    <Compile Include="Emulation\Instructions\Skp.cs" />
     <Compile Include="Emulation\Instructions\Suba.cs" />
     <Compile Include="Emulation\Instructions\Xor.cs" />
     <Compile Include="Emulation\Instructions\Or.cs" />

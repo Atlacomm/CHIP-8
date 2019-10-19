@@ -5,13 +5,13 @@ namespace CHIP8.Emulation
 {
     partial class CPU
     {
-        private void Sknp(int register)
+        private void Skp(int register)
         {
-            Console.WriteLine($"sknp V{register.ToString("X")}");
+            Console.WriteLine($"skp V{register.ToString("X")}");
 
             int key = V[register];
 
-            if (!mainWindow.buttonsDown[key])
+            if (mainWindow.buttonsDown[key])
             {
                 pc += 2;
             }

@@ -123,6 +123,9 @@ namespace CHIP8.Emulation
                 case 0xA000: // ANNN - Set I to the address NNN
                     Imovi((ushort)(opcode & 0x0FFF));
                     break;
+                case 0xB000: // BNNN - Jump to NNN + V0
+                    Jmpa((ushort)(opcode & 0x0FFF));
+                    break;
                 case 0xC000: // CXNN - Set VX to the result of a bitwise and operation with NN and a random number ranging from 0 to 255
                     Rnd((opcode & 0x0F00) >> 8, (byte)(opcode & 0x00FF));
                     break;
@@ -132,8 +135,11 @@ namespace CHIP8.Emulation
                 case 0xE000:
                     switch (opcode & 0x00FF)
                     {
-                        case 0x00A1: // EXA1 - Skip next instruction if key in VX not pressed (TODO: Actually implement key check)
+                        case 0x00A1: // EXA1 - Skip next instruction if key in VX is not pressed (TODO: Actually implement key check)
                             Sknp((opcode & 0x0F00) >> 8);
+                            break;
+                        case 0x009E: // EX9E - Skip next instruction if key in VX is pressed (TODO: Actually implement key check)
+                            Skp((opcode & 0x0F00) >> 8);
                             break;
                         default:
                             foundCode = false;

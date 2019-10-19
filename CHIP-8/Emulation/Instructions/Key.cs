@@ -19,6 +19,8 @@ namespace CHIP8.Emulation
                     {
                         V[register] = i;
                         keyPressed = true;
+
+                        mainWindow.buttonsDown[i] = false;
                     }
                 }
             }
