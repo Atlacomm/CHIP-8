@@ -192,7 +192,7 @@ namespace CHIP8.Emulation
                 pc += 2;
             }
 
-            if (STEPMODE | !foundCode)
+            if (STEPMODE)
             {
                 Console.ReadKey();
             }

@@ -75,6 +75,7 @@ namespace CHIP8.Windows
 
                     // Create an emulator
                     emulator?.WaitForEnd();
+                    emulator?.Kill();
                     GC.Collect();
                     emulator = new Emulator(rom);
                 }
